@@ -1,33 +1,32 @@
-#include<iostream>
-#include<math.h>
+#include <iostream>
+#include <cmath>
 using namespace std;
 int main()
 {
-    int n, sum, count;
-    cout<<"n = ";
-    cin>>n;
+    int n, sum = 0, count = 0;
+    cout << "Enter a number: ";
+    cin >> n;
     int m = n;
-    int j = m;
-    while (n!=0)
+    int p = m;
+    while (n != 0)
     {
-        n = n/10;
-        count ++;
+        n /= 10;
+        count++;
     }
-    while (j!=0)
+    while (p != 0)
     {
-        n=j%10;
+        n = p % 10;
         sum += pow(n, count);
-        j=j/10;
+        p /= 10;
     }
     if (sum == m)
     {
-        cout<<"Armstrong."<<endl;
+        cout << "Armstrong Number.";
     }
     else
     {
-        cout<<"Not an Armstrong."<<endl;
+        cout << "Not an Armstrong Number.";
     }
-    
-    
 
+    return 0;
 }
