@@ -37,8 +37,8 @@ void bubbleSort(int a[], int n)
 }
 int main()
 {
-    // int a[] = {78, 55, 34, 90, 64, 37, 59, 85};
-    int a[] = {1, 2, 3, 4, 5};
+    int a[] = {78, 55, 34, 90, 64, 37, 59, 85};
+    // int a[] = {1, 2, 3, 4, 5};
     int n = sizeof(a) / sizeof(int);
     bubbleSort(a, n);
     return 0;
