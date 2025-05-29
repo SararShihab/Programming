@@ -19,12 +19,12 @@ void revArray(int arr[], int n){
     
     // for (int i = 0; i < n; i++)
     // {
-    //     arr[i] = copyArr[i];
+    //     arr[i] = copyArr[i];  copies the copyArr to arr
     // }
     
     printArray(copyArr, n);
     
-    //printArray(arr, n);
+    //printArray(arr, n); prints the changed arr array
 }
 
 int main(){

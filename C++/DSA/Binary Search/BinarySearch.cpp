@@ -2,23 +2,21 @@
 using namespace std;
 
 int binarySearch(int arr[], int n, int tar){
-    int start = arr[0];
-    int end = arr[n-1];
-    while(start>=end){
+    int start = 0;
+    int end = n-1;
+    while(start<=end){
         int mid = (start + end)/2;
-        if(tar > mid){
-            start = mid + 1;
-        }
-        else if(tar < mid){
-            end = mid -1;
-        }
-        else if(tar == mid){
+        if(tar == arr[mid]){
             return mid;
         }
-        else{
-            return -1;
+        else if(tar < arr[mid]){
+            end = mid -1;
+        }
+        else if(tar > arr[mid]){
+            start = mid + 1;
         }
     }
+    return -1;
 }
 
 int main(){
@@ -27,7 +25,12 @@ int main(){
     int tar;
     cout << "Enter the target value: ";
     cin >> tar;
-    int ret = binarySearch(arr, n, tar);
-    cout << ret << endl;
+    int rslt = binarySearch(arr, n, tar);
+    if(rslt < 0){
+        cout << "Target value not found." << endl;
+    }
+    else{
+        cout << "Target value found at " << rslt <<" index." << endl;
+    }
     return 0;
 }
