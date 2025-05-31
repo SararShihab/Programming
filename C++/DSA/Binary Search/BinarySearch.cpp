@@ -30,7 +30,7 @@ int main(){
         cout << "Target value not found." << endl;
     }
     else{
-        cout << "Target value found at " << rslt <<" index." << endl;
+        cout << "Target value found at index " << rslt << endl;
     }
     return 0;
 }
