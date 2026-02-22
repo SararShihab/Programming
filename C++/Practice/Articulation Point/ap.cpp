@@ -19,7 +19,9 @@ private:
 
         for (int neighbor : adj[node]) {
 
-            if (neighbor == parent) continue;
+            if (neighbor == parent){ 
+                continue;
+            }
 
             if (!vis[neighbor]) {
 
