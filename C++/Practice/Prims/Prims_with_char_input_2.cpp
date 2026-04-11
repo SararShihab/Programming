@@ -103,3 +103,19 @@ int main() {
 
     return 0;
 }
+
+
+/*
+edge inputs: 
+S A 7
+S C 8
+A B 6
+A B 9
+A C 3
+C B 4
+C D 3
+C C 1
+B D 2
+B T 5
+D T 2
+*/
