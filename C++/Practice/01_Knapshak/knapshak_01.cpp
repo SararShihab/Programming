@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <tuple>
-#include <algorithm>
 
 using namespace std;
 
@@ -55,7 +54,7 @@ private:
                 auto [obj, p, wt] = items[i - 1];
                 
                 // Matching your output alignment style
-                cout << obj << " \t " << wt << " \t\t " << (double)p << endl;
+                cout << obj << " \t " << wt << " \t\t " << p << endl;
                 
                 res -= p;
                 w -= wt;
@@ -63,7 +62,7 @@ private:
         }
 
         cout << "------------------------------------" << endl;
-        cout << "Total: \t\t\t " << (double)dp[n][capacity] << ".00" << endl;
+        cout << "Total: \t\t\t " << dp[n][capacity] << endl;
         cout << "------------------------------------" << endl;
     }
 };

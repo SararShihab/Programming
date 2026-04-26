@@ -1,7 +1,6 @@
 #include<iostream>
 #include<vector>
 #include<tuple>
-#include<algorithm>
 
 using namespace std;
 
@@ -23,7 +22,7 @@ class Knapshak{
             if(res != dp[i-1][w]){
                 auto [obj, p, wt] = items[i-1];
 
-                cout << obj << " \t " << wt << " \t\t " << (double)p << endl;
+                cout << obj << " \t " << wt << " \t\t " << p << endl;
 
                 res -= p;
                 w -= wt;
@@ -31,7 +30,7 @@ class Knapshak{
         }
 
         cout<<"----------------------------------------"<<endl;
-        cout<<"Total: \t\t\t " << (double)dp[n][capacity] << ".00" <<endl;
+        cout<<"Total: \t\t\t " << dp[n][capacity] <<endl;
         cout<<"----------------------------------------"<<endl;
     }
 
