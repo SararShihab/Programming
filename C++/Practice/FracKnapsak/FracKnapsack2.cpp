@@ -1,24 +1,18 @@
-#include<iostream>
-#include<iomanip>
-#include<vector>
-#include<unordered_map>
-#include<tuple>
-#include<algorithm>
+#include <iostream>
+#include <iomanip>
+#include <vector>
+#include <tuple>
+#include <algorithm>
+
 using namespace std;
 
 class Knapshak {
 private:
     vector<tuple<char, int, int>> items;
-    vector<char> uniqueItems;
-    unordered_map<char, bool> exists;
 
 public:
     void addItem(char it, int p, int w) {
         items.push_back({it, p, w});
-        if (!exists[it]) {
-            uniqueItems.push_back(it);
-            exists[it] = true;
-        }
     }
 
     void solve(int capacity) {
@@ -28,25 +22,24 @@ public:
             return (double)p1 / w1 > (double)p2 / w2;
         });
 
-        double totalValue = 0.0;
+        double totalProfit = 0.0;
         int currentWeight = 0;
 
         cout << "\n------------------------------------" << endl;
-        cout << "Item \t Weight \t Value" << endl; 
+        cout << "Item \t Weight \t Profit" << endl; 
         cout << "------------------------------------" << endl;
 
         for (auto [it, p, w] : items) {
             if (currentWeight + w <= capacity) {
                 currentWeight += w;
-                totalValue += p;
-                // Aligned Weight and Value output
+                totalProfit += p;
                 cout << it << " \t " << w << " \t\t " << (double)p << endl;
             } else {
                 int remaining = capacity - currentWeight;
-                double fractionValue = p * ((double)remaining / w);
-                totalValue += fractionValue;
+                double fractionProfit = p * ((double)remaining / w);
+                totalProfit += fractionProfit;
 
-                cout << it << " \t " << remaining << " (f) \t " << fixed << setprecision(2) << fractionValue << endl;
+                cout << it << " \t " << remaining << " \t   (f)  " << fixed << setprecision(2) << fractionProfit << endl;
 
                 currentWeight = capacity;
                 break;
@@ -54,14 +47,14 @@ public:
         }
 
         cout << "------------------------------------" << endl;
-        cout << "Total: \t\t\t " << fixed << setprecision(2) << totalValue << endl;
+        cout << "Total: \t\t\t " << fixed << setprecision(2) << totalProfit << endl;
         cout << "------------------------------------" << endl;
     }
 };
 
 int main() {
-    int E;
-    cin >> E;
+    int n;
+    cin >> n;
 
     Knapshak bag;
 
@@ -78,6 +71,7 @@ int main() {
     bag.solve(capacity);
     return 0;
 }
+
 
 /*
 7
