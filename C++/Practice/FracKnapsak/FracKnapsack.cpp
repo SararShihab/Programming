@@ -58,7 +58,7 @@ int main() {
 
     Knapshak bag;
 
-    for (int i = 0; i < E; i++) {
+    for (int i = 0; i < n; i++) {
         char it;
         int p, w;
         cin >> it >> p >> w;
