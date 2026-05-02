@@ -2,22 +2,23 @@
 #include<vector>
 #include<climits>
 #include<unordered_map>
+#include<unordered_set>
 #include<tuple>
 
 using namespace std;
 
 class Bellman{
-    private:
+private:
     vector<tuple<char, char, int>> edges;
-    vector<char> uniqueVertices;
-    unordered_map<char, bool> exists;
+    unordered_set<char> vertices;
 
     void printDst(char srcNode, unordered_map<char, int> &dst){
+        
         cout << "\n------------------------------------" << endl;
         cout << "Vertex \t Distance from " << srcNode << endl;
         cout << "------------------------------------" << endl;
         
-        for(char v : uniqueVertices){
+        for(char v : vertices){
             cout << v << " \t ";
             if(dst[v] == INT_MAX){
                 cout << "INF";
@@ -26,54 +27,49 @@ class Bellman{
             }
             cout << endl;
         }
-        cout << "------------------------------------" << endl;
+
+        cout << endl;
     }
 
-    public:
+public:
     void addEdge(char u, char v, int w){
         edges.push_back({u, v, w});
-
-        if(!exists[u]){
-            uniqueVertices.push_back(u);
-            exists[u] = true;
-        }
-        if(!exists[v]){
-            uniqueVertices.push_back(v);
-            exists[v] = true;
-        }
+        vertices.insert(u);
+        vertices.insert(v);
     }
 
     void shortest(char srcNode){
         unordered_map<char, int> dst;
 
-        for(char v: uniqueVertices){
-            dst[v]=INT_MAX;
+        for(char v : vertices){
+            dst[v] = INT_MAX;
         }
 
-        if(exists.count(srcNode)){
-            dst[srcNode]=0;
+        if(vertices.count(srcNode)){
+            dst[srcNode] = 0;
         }
 
-        int V = uniqueVertices.size();
+        int V = vertices.size();
 
-        for(int i = 1; i<= V-1; i++){
-            for( auto [u, v, w] : edges){
-                if (dst[u] != INT_MAX && dst[u]+w < dst[v]){
-                    dst[v]=dst[u]+w;
+        for(int i = 1; i < V; i++){
+            for(auto [u, v, w] : edges){
+                if(dst[u] != INT_MAX && dst[u] + w < dst[v]){
+                    dst[v] = dst[u] + w;
                 }
             }
         }
 
         bool hasCycle = false;
-        for(auto [u,v,w] : edges){
-            if(dst[u] != INT_MAX && dst[u]+w<dst[v]){
+        for(auto [u, v, w] : edges){
+            if(dst[u] != INT_MAX && dst[u] + w < dst[v]){
                 hasCycle = true;
                 break;
             }
         }
 
         if(hasCycle){
-            cout<<"\nError: Graph contains a negative cycle..." << endl;
+            cout << "\nError: Graph contains a negative cycle..." << endl;
+            cout << endl;
         } else{
             printDst(srcNode, dst);
         }
@@ -82,19 +78,19 @@ class Bellman{
 
 int main(){
     int E;
-    cin>>E;
+    cin >> E;
 
     Bellman graph;
 
-    for(int i=0; i<E; i++){
+    for(int i = 0; i < E; i++){
         char u, v;
         int w;
-        cin>>u>>v>>w;
-        graph.addEdge(u,v,w);
+        cin >> u >> v >> w;
+        graph.addEdge(u, v, w);
     }
 
     char srcNode;
-    cin>>srcNode;
+    cin >> srcNode;
 
     graph.shortest(srcNode);
 

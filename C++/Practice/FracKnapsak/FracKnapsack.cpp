@@ -36,10 +36,13 @@ public:
                 cout << it << " \t " << w << " \t\t " << (double)p << endl;
             } else {
                 int remaining = capacity - currentWeight;
+                if (remaining <= 0) break;
+
                 double fractionProfit = p * ((double)remaining / w);
                 totalProfit += fractionProfit;
 
-                cout << it << " \t " << remaining << " \t   (f)  " << fixed << setprecision(2) << fractionProfit << endl;
+                cout << it << " \t " << remaining << " \t   (f)  "
+                     << fixed << setprecision(2) << fractionProfit << endl;
 
                 currentWeight = capacity;
                 break;
@@ -71,8 +74,6 @@ int main() {
     bag.solve(capacity);
     return 0;
 }
-
-
 /*
 7
 1 12 3

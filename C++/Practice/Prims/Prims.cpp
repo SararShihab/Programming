@@ -2,7 +2,7 @@
 #include <unordered_map>
 #include <vector>
 #include <queue>
-#include <tuple> // Required for tuple
+#include <tuple>
 
 using namespace std;
 
@@ -15,15 +15,13 @@ public:
     }
 
     void primsAlgo(char src) {
-        // priority_queue stores: {cost, current_node, parent_node}
         priority_queue<tuple<int, char, char>, vector<tuple<int, char, char>>, greater<tuple<int, char, char>>> pq;
         unordered_map<char, bool> mst;
-        
-        // Initial parent is a dummy '\0'
+
         pq.push({0, src, '\0'});
         int totalWeight = 0;
 
-        cout << "\nEdge \t Weight" << endl;
+        cout << "\nEdge \t Weight\n";
 
         while (!pq.empty()) {
             auto [cost, u, parent] = pq.top();
@@ -33,37 +31,42 @@ public:
                 mst[u] = true;
                 totalWeight += cost;
 
-                // Print the edge if it's not the starting node
                 if (parent != '\0') {
                     cout << parent << " - " << u << " \t " << cost << endl;
                 }
 
                 for (auto [v, wt] : l[u]) {
                     if (!mst[v]) {
-                        pq.push({wt, v, u}); // Push current node 'u' as parent of 'v'
+                        pq.push({wt, v, u});
                     }
                 }
             }
         }
+
         cout << "\nTotal Weight: " << totalWeight << endl;
     }
 };
 
 int main() {
     Graph g;
-    int nodes, edges;
-    cin >> nodes >> edges;
 
+    int edges;
+    cout << "Enter number of edges: ";
+    cin >> edges;
+
+    cout << "Enter edges (u v w):\n";
     for (int i = 0; i < edges; i++) {
-        int wt;
         char u, v;
+        int wt;
         cin >> u >> v >> wt;
         g.addEdge(u, v, wt);
     }
 
     char src;
+    cout << "Enter starting node: ";
     cin >> src;
 
     g.primsAlgo(src);
+
     return 0;
 }
