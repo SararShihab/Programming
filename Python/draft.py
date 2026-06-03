@@ -1,2 +1,2 @@
-for i in range(51):
-    print("Hello")
+for i in range(1,101):
+ print(i)
