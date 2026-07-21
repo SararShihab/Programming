@@ -1,106 +1,84 @@
-#include <iostream>
-#include <vector>
-#include <stack>
-
+#include<iostream>
+#include<unordered_map>
+#include<vector>
+#include<stack>
 using namespace std;
 
-class SCC {
-private:
+class SCC{
+    private:
+    unordered_map<char, vector<char>> adj, revAdj;
+    unordered_map<char, bool> vsted;
+    stack<char> st;
 
-    void dfs1(int node, vector<int>& vis, vector<vector<int>>& adj, stack<int>& st) {
-        vis[node] = 1;
+    void dfs1(char u){
+        vsted[u] = true;
 
-        for (int neighbor : adj[node]) {
-            if (!vis[neighbor]) {
-                dfs1(neighbor, vis, adj, st);
+        for(char v: adj[u]){
+            if(!vsted[v]){
+                dfs1(v);
             }
         }
-
-        st.push(node);
+        st.push(u);
     }
 
-    void dfs2(int node, vector<int>& vis, vector<vector<int>>& adjT, vector<int>& component) {
-        vis[node] = 1;
-        component.push_back(node);
-
-        for (int neighbor : adjT[node]) {
-            if (!vis[neighbor]) {
-                dfs2(neighbor, vis, adjT, component);
+    void dfs2(char u){
+        vsted[u] = true;
+        cout << u << " ";
+        for(char v: revAdj[u]){
+            if(!vsted[v]){
+                dfs2(v);
             }
         }
     }
 
-public:
+    public:
+    void addEdge(char u, char v){
+        adj[u].push_back(v);
+        revAdj[v].push_back(u);
+    }
 
-    void kosaraju(int V, vector<vector<int>>& adj) {
-
-        vector<int> vis(V, 0);
-        stack<int> st;
-
-        // Step 1: First DFS
-        for (int i = 0; i < V; i++) {
-            if (!vis[i]) {
-                dfs1(i, vis, adj, st);
+    void findSCC(){
+        for(auto &p: adj){
+            vsted[p.first]= false;
+        }
+        
+        for(auto &p: adj){
+            if(!vsted[p.first]){
+                dfs1(p.first);
             }
         }
 
-        // Step 2: Create transpose graph
-        vector<vector<int>> adjT(V);
-
-        for (int i = 0; i < V; i++) {
-            vis[i] = 0;
-            for (int neighbor : adj[i]) {
-                adjT[neighbor].push_back(i);
-            }
+        for(auto &p: adj){
+            vsted[p.first]=false;
         }
 
-        // Step 3: Second DFS
-        int sccCount = 0;
+        int sccCounter = 1;
 
-        while (!st.empty()) {
-            int node = st.top();
+        while(!st.empty()){
+            char u = st.top();
             st.pop();
 
-            if (!vis[node]) {
-                vector<int> component;
-
-                dfs2(node, vis, adjT, component);
-
-                sccCount++;
-
-                cout << "SCC " << sccCount << ": ";
-                for (int n : component) {
-                    cout << n << " ";
-                }
-                cout << endl;
+            if(!vsted[u]){
+                cout << "SCC" << sccCounter << ": ";
+                dfs2(u);
+                sccCounter++;
+                cout<<endl;
             }
+            
         }
-
-        cout << "Total Strongly Connected Components: " << sccCount << endl;
     }
 };
 
-int main() {
-
-    int V, E;
-
-    cout << "Enter number of vertices: ";
-    cin >> V;
-
-    cout << "Enter number of edges: ";
+int main(){
+    int E;
     cin >> E;
-
-    vector<vector<int>> adj(V);
-
-    cout << "Enter directed edges (u v):\n";
-    for (int i = 0; i < E; i++) {
-        int u, v;
+    SCC s;
+    for(int i = 0; i < E; i++){
+        char u, v;
         cin >> u >> v;
-        adj[u].push_back(v);
+        s.addEdge(u, v);
     }
 
-    SCC obj;
-    obj.kosaraju(V, adj);
-
+    s.findSCC();
     return 0;
 }
