@@ -1,0 +1,17 @@
+h1{
+    text-align:center;
+    border:solid;
+    width:100%;
+    font-family:avant garde, arial;
+}
+h2{
+    text-align:left;
+    font-weight:700;
+    text-decoration:wavy red underline;
+    letter-spacing:5px;
+}
+p{
+    text-align:justify;
+    text-decoration:overline;
+    line-height:2.5;
+}
