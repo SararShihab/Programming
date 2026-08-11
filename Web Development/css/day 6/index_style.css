@@ -1,0 +1,108 @@
+/* !important, it can not be changed */
+#excl_imp{
+    background-color: antiquewhite !important;
+}
+
+/* selectors */
+
+*{
+    font-family: "Courier New";
+    background-color: grey;
+}
+
+h1, h3{
+    color: #b92b27;
+}
+
+#login{
+    background-color: white;
+}
+
+#signup{
+    background-color: #b92b27;
+    color: white;
+}
+
+.upvote{
+    background-color: green;
+}
+
+div[id="myID"] p{
+    color:green; 
+}
+/* or */
+#myID p{
+    color: green;
+}
+
+p a{
+    color:purple;
+    background-color: yellow;
+}
+
+/* adjacent sibling combinator */
+
+p+h3{
+    text-decoration: underline;
+}
+
+.upvote+button{
+    background-color: blue;
+    color: white;
+}
+
+/* child combinators */
+
+div>input{
+    background-color: yellowgreen;
+}
+
+/* attribute selectors */
+
+input[type="text"]{
+    color: red;
+}
+input[type]{
+    background-color:ghostwhite;
+}
+
+/* pseudo class */
+
+button:hover{
+    background-color: black;
+    color: white;
+}
+h3:hover{
+    text-decoration: none;
+}
+
+button:active{
+    background-color:red;
+}
+
+input[type="radio"]:checked + label{
+    color: yellow;
+    font-weight: bold;
+}
+
+.post:nth-of-type(2){
+    background-color: chocolate;
+    color:green;
+}
+p:nth-of-type(2n){
+    background-color: aqua;
+}
+
+/* pseudo elements */
+
+h1::first-letter{
+    color:green
+}
+
+p::first-line{
+    color: purple;
+}
+
+p::selection{
+    background-color: lawngreen;
+}
