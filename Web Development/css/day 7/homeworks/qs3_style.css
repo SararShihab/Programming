@@ -1,0 +1,7 @@
+ul{
+    display: inline;
+}
+
+/* browser uses list-item to display bullet/marker 
+but when inline is implemented it is gone,
+so bullets dissappear */
