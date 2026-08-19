@@ -1,0 +1,19 @@
+#container{
+    border: 2px solid rgba(6, 241, 241, 0.902);
+    height: 400px;
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border-radius: 15px;
+    align-items: center;
+}
+#alpha{
+    height: 100px;
+    width: 100px;
+    border: 2px solid black;
+    font-size: 50px;
+    text-align: center;
+    background-color: gray;
+    border-radius: 10px;   
+}
