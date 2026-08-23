@@ -1,0 +1,72 @@
+.box{
+    height: 100;
+    width: 400px;
+    background-color: red;
+    color: white;
+
+    /* animation-name: fontAnimation;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+    animation-delay: 0;
+    animation-iteration-count: 3;
+    animation-direction: alternate; */
+
+    /* animation-name: colorAnimation;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+    animation-delay: 0;
+    animation-iteration-count: infinite;
+    animation-direction: alternate; */
+
+    /* animation-name: widthAnimation;
+    animation-duration: 2s;
+    animation-timing-function: ease-in;
+    animation-delay: 0;
+    animation-iteration-count: infinite;
+    animation-direction: alternate; */
+
+    /* animation: widthAnimation 2s ease-in 0s infinite alternate; */
+
+    animation: stageAnimation 2s ease-in 0s infinite alternate;
+}
+@keyframes fontAnimation{
+    from{
+        font-size: 20px;
+    }
+    to{
+        font-size: 40px;
+    }
+}
+@keyframes colorAnimation{
+    from{
+        background-color: green;
+    }
+    to{
+        background-color: blue;
+    }
+}
+@keyframes widthAnimation{
+    /* for more than one animation at a single element */
+    from{
+        width: 400px;
+        font-size: 20px;  
+    }
+    to{
+        width: 600px;
+        font-size: 40px;
+    }
+}
+@keyframes stageAnimation{
+    0%{
+        background-color: green;
+    }
+    25%{
+        background-color: azure;
+    }
+    75%{
+        background-color: blue;
+    }
+    100%{
+        background-color: blueviolet;
+    }
+}
